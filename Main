@@ -62,4 +62,5 @@ T = Mark(Name="Tango", LatDeg=40, LatDecMin=56.1, LonDeg=-73, LonDecMin=-41.3)
 J = Mark(Name="Juliett", LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-42.2)
 I = Mark(Name="India", LatDeg=40, LatDecMin=55.3, LonDeg=-73, LonDecMin=-43.3)
 
+#printAll(Start, End)
 printAll(E, P)
