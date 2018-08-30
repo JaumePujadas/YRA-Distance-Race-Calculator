@@ -15,39 +15,51 @@ def getBearing(Mark1, Mark2):
 	Term2 = (math.cos(Mark1.Lat) * math.sin(Mark2.Lat) - math.sin(Mark1.Lat) * math.cos(Mark2.Lat) * math.cos(DiffLon))
 	Bearing = math.degrees(math.atan2(Term1, Term2))
 	if Bearing<0:
-		return 360+Bearing
+		return round(360+Bearing, 2)
 	else:
-		return Bearing
+		return round(Bearing, 2)
+
+#Method to get the distance between two marks
+def getDist(Mark1, Mark2):
+	Radius = 6371 #in km
+	DiffLon = Mark2.Lon-Mark1.Lon
+	DiffLat = Mark2.Lat-Mark1.Lat
+	Term1 = ((math.sin(DiffLat/2) * math.sin(DiffLat/2)) + math.cos(Mark1.Lat) * math.cos(Mark2.Lat) * (math.sin(DiffLon/2) * math.sin(DiffLon/2)))
+	Term2 = 2 * math.atan2(math.sqrt(Term1), math.sqrt(1-Term1))
+	Distance = Term2 * Radius
+	return round(Distance, 2)
+
+def printAll(Mark1, Mark2):
+	print "The heading from", Mark1.Name, "to", Mark2.Name, "is:", getBearing(Mark1, Mark2), "degrees"
+	print "The distance from", Mark1.Name, "to", Mark2.Name, "is:", getDist(Mark1, Mark2), "km or", round((getDist(Mark1, Mark2)*0.621371), 2), "miles"
 
 #Mark class to store mark information
 class Mark(object):
 	Lon=0
 	Lat=0
-
-	def __init__(self, LatDeg, LatDecMin, LonDeg, LonDecMin):		
+	Name=""
+	def __init__(self, Name, LatDeg, LatDecMin, LonDeg, LonDecMin):		
 		self.Lat = math.radians(convertDeg(LatDeg, LatDecMin))
 		self.Lon = math.radians(convertDeg(LonDeg, LonDecMin))
-
-
+		self.Name = Name
 
 #Creates each mark
-Hotel = Mark(LatDeg=40, LatDecMin=54.8, LonDeg=-73, LonDecMin=-44.1)
-Golf = Mark(LatDeg=40, LatDecMin=54.2, LonDeg=-73, LonDecMin=-44.3)
-Foxtrot = Mark(LatDeg=40, LatDecMin=53.5, LonDeg=-73, LonDecMin=-44.2)
-Echo = Mark(LatDeg=40, LatDecMin=52.7, LonDeg=-73, LonDecMin=-43.0)
-Delta = Mark(LatDeg=40, LatDecMin=52.5, LonDeg=-73, LonDecMin=-42.7)
-Charlie = Mark(LatDeg=40, LatDecMin=52.2, LonDeg=-73, LonDecMin=-42.0)
-Yankee = Mark(LatDeg=40, LatDecMin=52.7, LonDeg=-73, LonDecMin=-39.5)
-Zulu = Mark(LatDeg=40, LatDecMin=51.6, LonDeg=-73, LonDecMin=-40.4)
-Xray = Mark(LatDeg=40, LatDecMin=54.6, LonDeg=-73, LonDecMin=-38.2)
-Oscar = Mark(LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-34.2)
-Lima = Mark(LatDeg=40, LatDecMin=57.7, LonDeg=-73, LonDecMin=-29.3)
-Sierra = Mark(LatDeg=40, LatDecMin=58.1, LonDeg=-73, LonDecMin=-32.8)
-Papa = Mark(LatDeg=41, LatDecMin=00.2, LonDeg=-73, LonDecMin=-31.4)
-Mike = Mark(LatDeg=40, LatDecMin=58.1, LonDeg=-73, LonDecMin=-38.8)
-Tango = Mark(LatDeg=40, LatDecMin=56.1, LonDeg=-73, LonDecMin=-41.3)
-Juliett = Mark(LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-42.2)
-India = Mark(LatDeg=40, LatDecMin=55.3, LonDeg=-73, LonDecMin=-43.3)
+H = Mark(Name="Hotel", LatDeg=40, LatDecMin=54.8, LonDeg=-73, LonDecMin=-44.1)
+G = Mark(Name="Golf", LatDeg=40, LatDecMin=54.2, LonDeg=-73, LonDecMin=-44.3)
+F = Mark(Name="Foxtrot", LatDeg=40, LatDecMin=53.5, LonDeg=-73, LonDecMin=-44.2)
+E = Mark(Name="Echo", LatDeg=40, LatDecMin=52.7, LonDeg=-73, LonDecMin=-43.0)
+D = Mark(Name="Delta", LatDeg=40, LatDecMin=52.5, LonDeg=-73, LonDecMin=-42.7)
+C = Mark(Name="Charlie", LatDeg=40, LatDecMin=52.2, LonDeg=-73, LonDecMin=-42.0)
+Y = Mark(Name="Yankee", LatDeg=40, LatDecMin=52.7, LonDeg=-73, LonDecMin=-39.5)
+Z = Mark(Name="Zulu", LatDeg=40, LatDecMin=51.6, LonDeg=-73, LonDecMin=-40.4)
+X = Mark(Name="Xray", LatDeg=40, LatDecMin=54.6, LonDeg=-73, LonDecMin=-38.2)
+O = Mark(Name="Oscar", LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-34.2)
+L = Mark(Name="Lima", LatDeg=40, LatDecMin=57.7, LonDeg=-73, LonDecMin=-29.3)
+S = Mark(Name="Sierra", LatDeg=40, LatDecMin=58.1, LonDeg=-73, LonDecMin=-32.8)
+P = Mark(Name="Papa", LatDeg=41, LatDecMin=00.2, LonDeg=-73, LonDecMin=-31.4)
+M = Mark(Name="Mike", LatDeg=40, LatDecMin=58.1, LonDeg=-73, LonDecMin=-38.8)
+T = Mark(Name="Tango", LatDeg=40, LatDecMin=56.1, LonDeg=-73, LonDecMin=-41.3)
+J = Mark(Name="Juliett", LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-42.2)
+I = Mark(Name="India", LatDeg=40, LatDecMin=55.3, LonDeg=-73, LonDecMin=-43.3)
 
-
-print getBearing(Echo, Papa)
+printAll(E, P)
