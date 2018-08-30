@@ -1,0 +1,53 @@
+import math
+
+#Method to convert decimal minutes into decimal degrees
+def convertDeg(Deg, DecMin):
+		Coord=0
+		Coord+=Deg
+		NewDecMin=(DecMin/60)
+		Coord+=NewDecMin
+		return Coord
+
+#Method to get the bearing between two marks
+def getBearing(Mark1, Mark2):
+	DiffLon = Mark2.Lon-Mark1.Lon
+	Term1 = (math.sin(DiffLon) * math.cos(Mark2.Lat))
+	Term2 = (math.cos(Mark1.Lat) * math.sin(Mark2.Lat) - math.sin(Mark1.Lat) * math.cos(Mark2.Lat) * math.cos(DiffLon))
+	Bearing = math.degrees(math.atan2(Term1, Term2))
+	if Bearing<0:
+		return 360+Bearing
+	else:
+		return Bearing
+
+#Mark class to store mark information
+class Mark(object):
+	Lon=0
+	Lat=0
+
+	def __init__(self, LatDeg, LatDecMin, LonDeg, LonDecMin):		
+		self.Lat = math.radians(convertDeg(LatDeg, LatDecMin))
+		self.Lon = math.radians(convertDeg(LonDeg, LonDecMin))
+
+
+
+#Creates each mark
+Hotel = Mark(LatDeg=40, LatDecMin=54.8, LonDeg=-73, LonDecMin=-44.1)
+Golf = Mark(LatDeg=40, LatDecMin=54.2, LonDeg=-73, LonDecMin=-44.3)
+Foxtrot = Mark(LatDeg=40, LatDecMin=53.5, LonDeg=-73, LonDecMin=-44.2)
+Echo = Mark(LatDeg=40, LatDecMin=52.7, LonDeg=-73, LonDecMin=-43.0)
+Delta = Mark(LatDeg=40, LatDecMin=52.5, LonDeg=-73, LonDecMin=-42.7)
+Charlie = Mark(LatDeg=40, LatDecMin=52.2, LonDeg=-73, LonDecMin=-42.0)
+Yankee = Mark(LatDeg=40, LatDecMin=52.7, LonDeg=-73, LonDecMin=-39.5)
+Zulu = Mark(LatDeg=40, LatDecMin=51.6, LonDeg=-73, LonDecMin=-40.4)
+Xray = Mark(LatDeg=40, LatDecMin=54.6, LonDeg=-73, LonDecMin=-38.2)
+Oscar = Mark(LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-34.2)
+Lima = Mark(LatDeg=40, LatDecMin=57.7, LonDeg=-73, LonDecMin=-29.3)
+Sierra = Mark(LatDeg=40, LatDecMin=58.1, LonDeg=-73, LonDecMin=-32.8)
+Papa = Mark(LatDeg=41, LatDecMin=00.2, LonDeg=-73, LonDecMin=-31.4)
+Mike = Mark(LatDeg=40, LatDecMin=58.1, LonDeg=-73, LonDecMin=-38.8)
+Tango = Mark(LatDeg=40, LatDecMin=56.1, LonDeg=-73, LonDecMin=-41.3)
+Juliett = Mark(LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-42.2)
+India = Mark(LatDeg=40, LatDecMin=55.3, LonDeg=-73, LonDecMin=-43.3)
+
+
+print getBearing(Echo, Papa)
