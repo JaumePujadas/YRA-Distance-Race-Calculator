@@ -31,7 +31,7 @@ def getDist(Mark1, Mark2):
 
 def printAll(Mark1, Mark2):
 	print "The heading from", Mark1.Name, "to", Mark2.Name, "is:", getBearing(Mark1, Mark2), "degrees"
-	print "The distance from", Mark1.Name, "to", Mark2.Name, "is:", getDist(Mark1, Mark2), "km or", round((getDist(Mark1, Mark2)*0.621371), 2), "miles"
+	print "The distance from", Mark1.Name, "to", Mark2.Name, "is:", getDist(Mark1, Mark2), "km or", round((getDist(Mark1, Mark2)*0.621371), 2), "miles or", round((getDist(Mark1, Mark2)*0.621371*0.868976), 2), "nautical miles"
 
 #Mark class to store mark information
 class Mark(object):
@@ -63,4 +63,4 @@ J = Mark(Name="Juliett", LatDeg=40, LatDecMin=55.5, LonDeg=-73, LonDecMin=-42.2)
 I = Mark(Name="India", LatDeg=40, LatDecMin=55.3, LonDeg=-73, LonDecMin=-43.3)
 
 #printAll(Start, End)
-printAll(E, P)
+printAll(E, Z)
